@@ -36,7 +36,7 @@ let slideIndex = 0;
 let autoSlideActive = true;
 const slides = [];
 
-const fotos = [
+const midias = [
   "20240705_224556.jpg",
   "20240706_204801.jpg",
   "20240706_205025.jpg",
@@ -51,6 +51,7 @@ const fotos = [
   "20251207_143724.jpg",
   "20251227_222139.jpg",
   "20260109_203208.jpg",
+  "20260210_155855.mp4",
   "20260315_164807.jpg",
   "20260420_134312(0).jpg",
   "20260606_161625.jpg",
@@ -78,24 +79,36 @@ const fotos = [
   "Screenshot_20260311_094816_WhatsApp.jpg"
 ];
 
-for (const nome of fotos) {
-  const img = document.createElement("img");
-  img.src = `assets/fotos/${encodeURIComponent(nome)}`;
-  img.className = "slide";
-  img.style.display = "none";
-  img.style.cursor = "pointer";
+for (const nome of midias) {
+  const ehVideo = nome.toLowerCase().endsWith(".mp4");
+  const el = document.createElement(ehVideo ? "video" : "img");
+  el.src = `assets/fotos/${encodeURIComponent(nome)}`;
+  el.className = "slide";
+  el.style.display = "none";
+  el.style.cursor = "pointer";
 
-  img.addEventListener("click", () => {
+  if (ehVideo) {
+    el.muted = true;
+    el.loop = true;
+    el.playsInline = true;
+    el.setAttribute("controls", "");
+  }
+
+  el.addEventListener("click", () => {
     autoSlideActive = false;
   });
 
-  slideContainer.appendChild(img);
-  slides.push(img);
+  slideContainer.appendChild(el);
+  slides.push(el);
 }
 
 function showSlide(n) {
-  slides.forEach(slide => slide.style.display = "none");
+  slides.forEach(slide => {
+    slide.style.display = "none";
+    if (slide.tagName === "VIDEO") slide.pause();
+  });
   slides[n].style.display = "block";
+  if (slides[n].tagName === "VIDEO") slides[n].play().catch(() => {});
   caption.innerText = frases[n % frases.length];
 }
 
