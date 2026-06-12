@@ -162,3 +162,96 @@ h1 {
   width: 100%;
 }
 .win-message button:hover { background: var(--red); border-color: var(--red); color: #fff; }
+
+/* ░░░░░░░░░░░ RÁDIO (compartilhado com a home) ░░░░░░░░░░░ */
+.radio {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  margin: -20px -20px 20px; /* fura o padding do body p/ largura total */
+  background: rgba(11,11,12,.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+.radio__bar {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 12px 20px;
+  flex-wrap: wrap;
+}
+.radio__brand {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--display);
+  letter-spacing: 2px;
+  font-size: 1.25rem;
+  white-space: nowrap;
+}
+.radio__name .fm { color: var(--red); }
+.radio__eq { display: inline-flex; align-items: flex-end; gap: 2px; height: 18px; }
+.radio__eq i { width: 3px; height: 30%; background: var(--red); display: block; }
+.radio.is-playing .radio__eq i { animation: eq .9s ease-in-out infinite; }
+.radio__eq i:nth-child(2) { animation-delay: .2s; }
+.radio__eq i:nth-child(3) { animation-delay: .4s; }
+.radio__eq i:nth-child(4) { animation-delay: .1s; }
+@keyframes eq { 0%,100% { height: 25%; } 50% { height: 100%; } }
+.radio__now {
+  flex: 1 1 auto; min-width: 0;
+  display: flex; align-items: center; gap: 8px;
+  font-size: .8rem; overflow: hidden; white-space: nowrap;
+}
+.radio__tag {
+  flex: none; font-weight: 700; color: var(--bg);
+  background: var(--red); padding: 1px 7px;
+  letter-spacing: 1px; font-size: .68rem;
+}
+.radio__track  { font-weight: 700; overflow: hidden; text-overflow: ellipsis; }
+.radio__dot    { color: var(--muted); }
+.radio__artist { color: var(--muted); overflow: hidden; text-overflow: ellipsis; }
+.radio__controls { display: flex; align-items: center; gap: 8px; flex: none; }
+.radio__btn {
+  width: 38px; height: 38px;
+  border: 1px solid var(--line); background: transparent; color: var(--ink);
+  border-radius: 50%; font-size: .85rem; cursor: pointer;
+  display: grid; place-items: center; transition: .15s ease;
+}
+.radio__btn:hover { border-color: var(--ink); transform: translateY(-1px); }
+.radio__btn--play {
+  width: 46px; height: 46px;
+  background: var(--red); border-color: var(--red); color: #fff; font-size: 1rem;
+}
+.radio__btn--play:hover { background: var(--red-dim); border-color: var(--red-dim); }
+.radio__vol-wrap { display: flex; align-items: center; gap: 6px; margin-left: 4px; }
+.radio__vol-ico { font-size: .62rem; letter-spacing: 1px; color: var(--muted); }
+.radio__vol {
+  -webkit-appearance: none; appearance: none;
+  width: 84px; height: 4px; border-radius: 4px;
+  background: var(--line); accent-color: var(--red); cursor: pointer;
+}
+.radio__vol::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none;
+  width: 13px; height: 13px; border-radius: 50%; background: var(--red); cursor: pointer;
+}
+.radio__vol::-moz-range-thumb {
+  width: 13px; height: 13px; border: none; border-radius: 50%; background: var(--red); cursor: pointer;
+}
+.radio__progress { height: 4px; background: var(--line); cursor: pointer; position: relative; }
+.radio__progress-fill { height: 100%; width: 0; background: var(--red); transition: width .15s linear; }
+.radio__progress::after {
+  content: "♥"; position: absolute; right: 8px; top: -9px; font-size: .7rem; color: var(--red);
+}
+
+/* corações */
+.hearts { position: fixed; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+.heart {
+  position: absolute; bottom: -40px; color: var(--red);
+  animation: floatUp linear infinite; will-change: transform, opacity;
+}
+@keyframes floatUp {
+  0%   { transform: translateY(0) rotate(0deg) scale(1); }
+  100% { transform: translateY(-115vh) rotate(40deg) scale(1.15); }
+}
+.top-bar, h1, .subtitle, .difficulty, #content { position: relative; z-index: 2; }

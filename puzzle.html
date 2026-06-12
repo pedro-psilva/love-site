@@ -12,6 +12,36 @@
 </head>
 <body>
   <div class="grain"></div>
+  <div class="hearts" id="hearts" aria-hidden="true"></div>
+
+  <!-- ░░ RÁDIO ░░ -->
+  <header class="radio" id="radio">
+    <div class="radio__bar">
+      <div class="radio__brand">
+        <span class="radio__eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span class="radio__name">RÁDIO&nbsp;·&nbsp;A&amp;P&nbsp;<span class="fm">98.7 FM</span></span>
+      </div>
+      <div class="radio__now">
+        <span class="radio__tag">NO AR</span>
+        <span class="radio__track" id="radioTrack">Baby I'm Yours</span>
+        <span class="radio__dot">—</span>
+        <span class="radio__artist" id="radioArtist">Arctic Monkeys</span>
+      </div>
+      <div class="radio__controls">
+        <button id="btnPrev" class="radio__btn" aria-label="Anterior">&#9198;</button>
+        <button id="btnPlay" class="radio__btn radio__btn--play" aria-label="Tocar ou pausar">&#9654;</button>
+        <button id="btnNext" class="radio__btn" aria-label="Próxima">&#9197;</button>
+        <span class="radio__vol-wrap">
+          <span class="radio__vol-ico" aria-hidden="true">VOL</span>
+          <input type="range" id="vol" class="radio__vol" min="0" max="1" step="0.01" value="0.5" aria-label="Volume" />
+        </span>
+      </div>
+    </div>
+    <div class="radio__progress" id="progress" title="Avançar/retroceder">
+      <div class="radio__progress-fill" id="progressFill"></div>
+    </div>
+  </header>
+
   <div class="top-bar">
     <button onclick="window.location.href='index.html'">⬅ VOLTAR</button>
   </div>
@@ -36,6 +66,7 @@
     </div>
   </div>
 
+  <script src="radio.js"></script>
   <script src="puzzle.js"></script>
 </body>
 </html>

@@ -57,6 +57,7 @@ audio.addEventListener("error", () => {
 audio.addEventListener("timeupdate", () => {
   const pct = audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
   progressFl.style.width = pct + "%";
+  saveState();
 });
 
 btnPlay.addEventListener("click", () => {
@@ -89,9 +90,38 @@ progress.addEventListener("click", (e) => {
   document.addEventListener(ev, () => ensureStarted(), { passive: true })
 );
 
-// pré-carrega a 1ª faixa (Baby I'm Yours)
-audio.src = encodeURI(TRACKS[0].src);
+// ░░ Persistência entre páginas — continua tocando de onde parou ░░
+const STORE_KEY = "radioState";
+function saveState() {
+  try {
+    sessionStorage.setItem(STORE_KEY, JSON.stringify({
+      current,
+      time: audio.currentTime || 0,
+      playing: !audio.paused,
+      volume: audio.volume
+    }));
+  } catch (e) {}
+}
+window.addEventListener("pagehide", saveState);
+
+let saved = null;
+try { saved = JSON.parse(sessionStorage.getItem(STORE_KEY) || "null"); } catch (e) {}
+if (saved && typeof saved.current === "number" && saved.current < TRACKS.length) {
+  current = saved.current;
+}
+audio.src = encodeURI(TRACKS[current].src);
+if (saved && typeof saved.volume === "number") {
+  audio.volume = saved.volume;
+  if (vol) vol.value = saved.volume;
+}
 syncMeta();
+if (saved) {
+  audio.addEventListener("loadedmetadata", function once() {
+    audio.removeEventListener("loadedmetadata", once);
+    if (saved.time) { try { audio.currentTime = saved.time; } catch (e) {} }
+    if (saved.playing) audio.play().catch(() => {});
+  });
+}
 
 // ░░ Waveform estilo AM (estática + reativa ao play) ░░
 (function buildWave() {

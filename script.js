@@ -113,6 +113,7 @@ function showSlide(n) {
 }
 
 function changeSlide(n) {
+  autoSlideActive = false; // clicou nas setas -> modo manual
   slideIndex += n;
   if (slideIndex >= slides.length) slideIndex = 0;
   if (slideIndex < 0) slideIndex = slides.length - 1;
