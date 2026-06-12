@@ -155,6 +155,38 @@ body {
 }
 .radio__btn--play:hover { background: var(--red-dim); border-color: var(--red-dim); }
 
+.radio__vol-wrap { display: flex; align-items: center; gap: 6px; margin-left: 4px; }
+.radio__vol-ico {
+  font-size: .62rem;
+  letter-spacing: 1px;
+  color: var(--muted);
+}
+.radio__vol {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 84px;
+  height: 4px;
+  border-radius: 4px;
+  background: var(--line);
+  accent-color: var(--red);
+  cursor: pointer;
+}
+.radio__vol::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--red);
+  cursor: pointer;
+}
+.radio__vol::-moz-range-thumb {
+  width: 13px; height: 13px;
+  border: none;
+  border-radius: 50%;
+  background: var(--red);
+  cursor: pointer;
+}
+
 .radio__progress {
   height: 4px;
   background: var(--line);
@@ -297,7 +329,13 @@ body.playing .wave span { animation: bounce 1.1s ease-in-out infinite; }
   border: 1px solid var(--line);
   padding: 10px;
   position: relative;
+  overflow: hidden;
   box-shadow: 0 24px 60px rgba(0,0,0,.55);
+}
+#slideContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 .slider::after {
   content: "AM · PEDRO & AMANDA";
@@ -312,9 +350,12 @@ body.playing .wave span { animation: bounce 1.1s ease-in-out infinite; }
   pointer-events: none;
 }
 .slide {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   filter: grayscale(.25) contrast(1.05);
   transition: filter .4s ease;
 }

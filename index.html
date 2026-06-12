@@ -32,6 +32,10 @@
         <button id="btnPrev" class="radio__btn" aria-label="Anterior">&#9198;</button>
         <button id="btnPlay" class="radio__btn radio__btn--play" aria-label="Tocar ou pausar">&#9654;</button>
         <button id="btnNext" class="radio__btn" aria-label="Próxima">&#9197;</button>
+        <span class="radio__vol-wrap">
+          <span class="radio__vol-ico" aria-hidden="true">VOL</span>
+          <input type="range" id="vol" class="radio__vol" min="0" max="1" step="0.01" value="0.5" aria-label="Volume" />
+        </span>
       </div>
     </div>
     <div class="radio__progress" id="progress" title="Avançar/retroceder">

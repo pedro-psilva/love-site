@@ -7,6 +7,7 @@ const TRACKS = [
 
 const audio = new Audio();
 audio.preload = "metadata";
+audio.volume = 0.5; // começa no meio
 let current = 0;
 let started = false;
 
@@ -18,6 +19,7 @@ const btnNext    = document.getElementById("btnNext");
 const radioEl    = document.getElementById("radio");
 const progress   = document.getElementById("progress");
 const progressFl = document.getElementById("progressFill");
+const vol        = document.getElementById("vol");
 
 function syncMeta() {
   elTrack.textContent  = TRACKS[current].name;
@@ -69,6 +71,12 @@ btnPrev.addEventListener("click", () => {
   if (audio.currentTime > 3) { audio.currentTime = 0; audio.play().catch(() => {}); }
   else loadTrack(current - 1, true);
 });
+
+// controle de volume
+if (vol) {
+  audio.volume = parseFloat(vol.value);
+  vol.addEventListener("input", () => { audio.volume = parseFloat(vol.value); });
+}
 
 // clicar na barra para avançar/retroceder
 progress.addEventListener("click", (e) => {
