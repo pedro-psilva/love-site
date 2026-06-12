@@ -1,9 +1,8 @@
 // ░░ RÁDIO — player de áudio local (toca a música COMPLETA) ░░
 // Coloque os arquivos .mp3 na pasta /musicas com EXATAMENTE estes nomes:
 const TRACKS = [
-  { src: "musicas/baby-im-yours.mp3",   name: "Baby I'm Yours",  artist: "Arctic Monkeys" },
-  { src: "musicas/r-u-mine.mp3",        name: "R U Mine?",       artist: "Arctic Monkeys" },
-  { src: "musicas/i-wanna-be-yours.mp3", name: "I Wanna Be Yours", artist: "Arctic Monkeys" }
+  { src: "assets/musicas/baby im yours.mp3",    name: "Baby I'm Yours",   artist: "Arctic Monkeys" },
+  { src: "assets/musicas/i wanna be yours.mp3", name: "I Wanna Be Yours", artist: "Arctic Monkeys" }
 ];
 
 const audio = new Audio();
@@ -33,7 +32,7 @@ function setPlayingUI(playing) {
 
 function loadTrack(index, autoplay) {
   current = (index + TRACKS.length) % TRACKS.length;
-  audio.src = TRACKS[current].src;
+  audio.src = encodeURI(TRACKS[current].src);
   syncMeta();
   if (autoplay) audio.play().catch(() => {});
 }
@@ -42,7 +41,7 @@ function loadTrack(index, autoplay) {
 function ensureStarted() {
   if (started) return false;
   started = true;
-  if (!audio.src) audio.src = TRACKS[current].src;
+  if (!audio.src) audio.src = encodeURI(TRACKS[current].src);
   audio.play().catch(() => {});
   return true;
 }
@@ -83,7 +82,7 @@ progress.addEventListener("click", (e) => {
 );
 
 // pré-carrega a 1ª faixa (Baby I'm Yours)
-audio.src = TRACKS[0].src;
+audio.src = encodeURI(TRACKS[0].src);
 syncMeta();
 
 // ░░ Waveform estilo AM (estática + reativa ao play) ░░
