@@ -17,16 +17,16 @@ setInterval(updateCounter, 1000);
 updateCounter();
 
 const frases = [
-  "Te amo, minha gatinha 💕",
-  "Você é meu mundo 🌍",
-  "Contigo até o fim ❤️",
-  "Meu amor por você só cresce 💘",
-  "Seu sorriso é meu lugar feliz 😍",
-  "A vida é melhor com você 💑",
-  "Você é meu sonho realizado ✨",
-  "Amor da minha vida 🥰",
-  "Juntos somos perfeitos 💖",
-  "Meu coração é todo seu 💓"
+  "“I wanna be yours” — e sou.",
+  "Baby, I'm yours.",
+  "R U mine? Sempre.",
+  "Você é a minha trilha sonora.",
+  "505 quilômetros ou nenhum: é você.",
+  "Do nosso jeito, fora do tom.",
+  "Meu lugar favorito é do seu lado.",
+  "A gente combina como vinil e agulha.",
+  "Te amo no volume máximo.",
+  "Pedro & Amanda — sem refrão pra acabar."
 ];
 
 const slideContainer = document.getElementById("slideContainer");

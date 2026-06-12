@@ -1,300 +1,353 @@
-/* Reset e layout geral */
+/* ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+   PEDRO & AMANDA — indie / Arctic Monkeys vibe
+   ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ */
+
+:root {
+  --bg:      #0b0b0c;
+  --bg-2:    #131315;
+  --ink:     #ece8e1;
+  --muted:   #8a857c;
+  --line:    #26252a;
+  --red:     #d8232a;
+  --red-dim: #9c1b20;
+  --display: 'Bebas Neue', Impact, sans-serif;
+  --mono:    'Space Mono', ui-monospace, monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
 body {
-  font-family: 'Open Sans', sans-serif;
-  background-color: #ffe4ec;
-  margin: 0;
-  padding: 20px 10px;
-  text-align: center;
-  color: #333;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--mono);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* textura de grão analógico */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  opacity: .045;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+::selection { background: var(--red); color: #fff; }
+
+/* ░░░░░░░░░░░ RÁDIO ░░░░░░░░░░░ */
+.radio {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(11,11,12,.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+.radio__bar {
+  max-width: 1100px;
+  margin: 0 auto;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  max-width: 100%;
+  gap: 18px;
+  padding: 12px 20px;
+  flex-wrap: wrap;
 }
 
-html {
-  scroll-behavior: smooth;
+.radio__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--display);
+  letter-spacing: 2px;
+  font-size: 1.25rem;
+  white-space: nowrap;
+}
+.radio__name .fm { color: var(--red); }
+
+/* equalizer pequeno */
+.radio__eq { display: inline-flex; align-items: flex-end; gap: 2px; height: 18px; }
+.radio__eq i {
+  width: 3px; height: 30%;
+  background: var(--red);
+  display: block;
+}
+.radio.is-playing .radio__eq i { animation: eq .9s ease-in-out infinite; }
+.radio__eq i:nth-child(2) { animation-delay: .2s; }
+.radio__eq i:nth-child(3) { animation-delay: .4s; }
+.radio__eq i:nth-child(4) { animation-delay: .1s; }
+@keyframes eq {
+  0%, 100% { height: 25%; }
+  50%      { height: 100%; }
 }
 
-/* Título e subtítulos */
-h1, h2 {
-  font-family: 'Great Vibes', cursive;
-  color: #c2185b;
-  margin: 5px 0;
+.radio__now {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: .8rem;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.radio__tag {
+  flex: none;
+  font-weight: 700;
+  color: var(--bg);
+  background: var(--red);
+  padding: 1px 7px;
+  letter-spacing: 1px;
+  font-size: .68rem;
+}
+.radio__track  { font-weight: 700; overflow: hidden; text-overflow: ellipsis; }
+.radio__dot    { color: var(--muted); }
+.radio__artist { color: var(--muted); overflow: hidden; text-overflow: ellipsis; }
+
+.radio__controls { display: flex; align-items: center; gap: 8px; flex: none; }
+.radio__btn {
+  width: 38px; height: 38px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  border-radius: 50%;
+  font-size: .85rem;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: .15s ease;
+}
+.radio__btn:hover { border-color: var(--ink); transform: translateY(-1px); }
+.radio__btn--play {
+  width: 46px; height: 46px;
+  background: var(--red);
+  border-color: var(--red);
+  color: #fff;
+  font-size: 1rem;
+}
+.radio__btn--play:hover { background: var(--red-dim); border-color: var(--red-dim); }
+
+.radio__embed {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px 12px;
+}
+.radio__embed iframe { border-radius: 10px; display: block; }
+
+/* ░░░░░░░░░░░ HERO ░░░░░░░░░░░ */
+.hero {
+  text-align: center;
+  padding: 9vh 20px 6vh;
+  border-bottom: 1px solid var(--line);
+}
+.hero__kicker {
+  font-size: .8rem;
+  letter-spacing: 6px;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+.hero__title {
+  font-family: var(--display);
+  font-weight: 400;
+  line-height: .92;
+  letter-spacing: 3px;
+  font-size: clamp(3.2rem, 13vw, 9rem);
+  text-transform: uppercase;
+}
+.hero__title span {
+  color: var(--red);
+  display: inline-block;
+  padding: 0 .1em;
+}
+.hero__sub {
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: .85rem;
+  letter-spacing: 1px;
 }
 
-/* Contador de dias */
-.counter {
-  font-size: 1.2em;
-  margin-bottom: 10px;
+/* waveform AM */
+.wave {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  height: 90px;
+  margin: 28px auto 6px;
+  max-width: 640px;
+}
+.wave span {
+  width: 4px;
+  background: var(--ink);
+  opacity: .85;
+  border-radius: 2px;
+}
+body.playing .wave span { animation: bounce 1.1s ease-in-out infinite; }
+@keyframes bounce {
+  0%, 100% { transform: scaleY(.55); }
+  50%      { transform: scaleY(1); }
 }
 
-/* Linha do tempo */
-.timeline {
-  background-color: #fcd6e1;
-  padding: 10px;
-  border-radius: 10px;
-  margin-bottom: 10px;
-  font-size: 0.9em;
-  max-width: 90%;
+/* ░░░░░░░░░░░ CONTADOR ░░░░░░░░░░░ */
+.clock {
+  text-align: center;
+  padding: 7vh 20px;
+  border-bottom: 1px solid var(--line);
+}
+.clock__label {
+  font-size: .8rem;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.clock__display {
+  font-family: var(--display);
+  letter-spacing: 2px;
+  font-size: clamp(1.6rem, 6vw, 3.4rem);
+  color: var(--ink);
 }
 
-.timeline-item {
-  margin: 5px 0;
+/* ░░░░░░░░░░░ SEÇÕES ░░░░░░░░░░░ */
+.section-title {
+  font-family: var(--display);
+  font-weight: 400;
+  letter-spacing: 4px;
+  font-size: clamp(2rem, 8vw, 4rem);
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 6px;
+}
+.section-title::after {
+  content: "";
+  display: block;
+  width: 46px; height: 3px;
+  background: var(--red);
+  margin: 10px auto 0;
 }
 
-/* Galeria */
+/* ░░░░░░░░░░░ GALERIA ░░░░░░░░░░░ */
 .gallery {
-  background-color: #fcd6e1;
-  padding: 10px;
-  border-radius: 12px;
-  margin-bottom: 10px;
-  position: relative;
-  max-width: 90%;
+  padding: 8vh 20px;
+  border-bottom: 1px solid var(--line);
 }
-
-/* Slider e botões laterais */
 .slider-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
-  margin: 0 auto;
+  gap: 16px;
+  margin: 34px auto 0;
   max-width: 100%;
 }
-
 .slider {
   width: 360px;
   height: 480px;
-  border-radius: 12px;
-  overflow: hidden;
-  background-color: #fcd6e1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  padding: 10px;
+  position: relative;
+  box-shadow: 0 24px 60px rgba(0,0,0,.55);
 }
-
+.slider::after {
+  content: "AM · PEDRO & AMANDA";
+  position: absolute;
+  bottom: 14px; left: 50%;
+  transform: translateX(-50%);
+  font-size: .58rem;
+  letter-spacing: 2px;
+  color: rgba(236,232,225,.7);
+  background: rgba(0,0,0,.45);
+  padding: 2px 8px;
+  pointer-events: none;
+}
 .slide {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 12px;
-  cursor: pointer;
+  filter: grayscale(.25) contrast(1.05);
+  transition: filter .4s ease;
 }
+.slider:hover .slide { filter: grayscale(0) contrast(1.05); }
 
-/* Botões de navegação do slide */
 button.nav {
-  background-color: #c2185b;
-  color: white;
-  border: none;
-  padding: 14px 16px;
-  font-size: 24px;
+  width: 46px; height: 46px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  font-size: 1.1rem;
+  cursor: pointer;
   border-radius: 50%;
-  cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-  transition: background-color 0.3s ease;
+  flex: none;
+  transition: .15s ease;
 }
+button.nav:hover { border-color: var(--red); color: var(--red); }
 
-button.nav:hover {
-  background-color: #e91e63;
-}
-
-/* Legenda das fotos */
 .caption {
-  font-family: 'Great Vibes', cursive;
-  font-size: 1.4em;
-  margin-top: 8px;
-  color: #880e4f;
-  min-height: 30px;
-  transition: opacity 0.3s ease-in-out;
-}
-
-/* Botão "JOGAR" */
-button {
-  background-color: #c2185b;
-  color: white;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 1.2em;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-  transition: background-color 0.3s ease;
-}
-
-button:hover {
-  background-color: #e91e63;
-}
-
-/* Caixa do botão jogar */
-.message {
-  background-color: #fcd6e1;
-  padding: 10px;
-  border-radius: 10px;
-  font-size: 1em;
-  max-width: 90%;
-  line-height: 1.4;
-}
-
-/* Responsivo para telas pequenas */
-@media (max-height: 600px), (max-width: 400px) {
-  .slider {
-    width: 280px;
-    height: 360px;
-  }
-  .caption {
-    font-size: 1.2em;
-  }
-  button.nav {
-    padding: 12px;
-    font-size: 20px;
-  }
-/* Seção do quebra-cabeça */
-.puzzle {
-  background-color: #fcd6e1;
-  padding: 20px;
-  border-radius: 12px;
-  margin: 20px 0;
-  max-width: 90%;
-}
-
-.puzzle h2 {
-  font-family: 'Great Vibes', cursive;
-  color: #c2185b;
-  margin-bottom: 10px;
-}
-
-.puzzle-options p {
-  margin-bottom: 10px;
-  font-size: 1.1em;
-}
-
-.puzzle-buttons {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-
-.level-btn {
-  background-color: #c2185b;
-  color: white;
-  border: none;
-  padding: 8px 14px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s;
-  font-size: 1em;
-}
-
-.level-btn:hover {
-  background-color: #e91e63;
-}
-
-.custom-input {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-}
-
-.custom-input input {
-  padding: 5px 10px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  width: 60px;
   text-align: center;
+  margin-top: 22px;
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--muted);
+  letter-spacing: .5px;
+  min-height: 1.6em;
 }
 
-.puzzle-container {
-  display: grid;
-  margin: 0 auto;
-  max-width: 100%;
-  border: 2px solid #c2185b;
-  border-radius: 8px;
-  overflow: hidden;
-  aspect-ratio: 1 / 1;
-  position: relative;
-}
-
-/* Modal do resultado */
-.puzzle-modal {
-  display: none;
-  position: fixed;
-  z-index: 999;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.6);
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-content {
-  background: #fff0f5;
-  padding: 30px;
-  border-radius: 12px;
+/* ░░░░░░░░░░░ JOGOS ░░░░░░░░░░░ */
+.games {
+  padding: 8vh 20px;
   text-align: center;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  border-bottom: 1px solid var(--line);
 }
-
-.modal-content h3 {
-  font-family: 'Great Vibes', cursive;
-  font-size: 2em;
-  margin-bottom: 10px;
-  color: #c2185b;
-}
-
-.modal-content button {
-  margin-top: 10px;
-}
-.section-box {
-  background-color: #fcd6e1;
-  padding: 20px;
-  border-radius: 12px;
-  margin-bottom: 20px;
-  width: 360px;
-  max-width: 90vw;
-  margin-left: auto;
-  margin-right: auto;
-}
-.message button {
-  width: 100%;
-  font-size: 1.4em;
-  padding: 14px 20px;
-  margin-top: 10px;
-  border-radius: 12px;
-  box-shadow: 0 6px 10px rgba(0,0,0,0.2);
-}
-.love-clock {
-  background-color: #fcd6e1;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-  margin: 20px 0;
-  display: inline-block;
-  text-align: center;
-  font-family: 'Open Sans', sans-serif;
-}
-
-.love-clock h2 {
-  font-family: 'Great Vibes', cursive;
-  color: #c2185b;
-  font-size: 1.8em;
-  margin-bottom: 10px;
-}
-
-.clock-display {
-  font-size: 1.4em;
-  color: #880e4f;
-  font-weight: bold;
+.games__hint {
+  color: var(--muted);
+  font-size: .85rem;
   letter-spacing: 1px;
+  margin: 16px 0 28px;
+}
+.games__btns {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.games button {
+  font-family: var(--display);
+  letter-spacing: 3px;
+  font-size: 1.4rem;
+  padding: 14px 34px;
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  cursor: pointer;
+  transition: .18s ease;
+}
+.games button:hover {
+  background: var(--red);
+  border-color: var(--red);
+  color: #fff;
+  transform: translateY(-2px);
 }
 
+/* ░░░░░░░░░░░ RODAPÉ ░░░░░░░░░░░ */
+.footer {
+  text-align: center;
+  padding: 6vh 20px;
+  font-size: .72rem;
+  letter-spacing: 3px;
+  color: var(--muted);
 }
 
+/* ░░░░░░░░░░░ RESPONSIVO ░░░░░░░░░░░ */
+@media (max-width: 680px) {
+  .radio__now { order: 3; flex-basis: 100%; }
+  .radio__bar { gap: 12px; }
+  .slider { width: 280px; height: 380px; }
+  .wave { height: 64px; }
+  .hero__title { letter-spacing: 1px; }
+}

@@ -2,39 +2,86 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Nossa História de Amor</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pedro &amp; Amanda</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <h1>Nossa História de Amor</h1> 
-  <div class="section-box timeline">
-    <h2>Pedro e Amanda</h2>
-    <div class="timeline-item">💘 Pedido de Namoro - 17 de Outubro de 2016</div>
-  </div>
-   <div class="love-clock">
-  <h2>💘 Estamos juntos há:</h2>
-  <div id="daysTogether" class="clock-display">Carregando...</div>
-</div>
-  <div class="section-box gallery">
-    <h2>Nossas Memórias</h2>
-    <div class="slider-wrapper">
-      <button class="nav prev" onclick="changeSlide(-1)">&#10094;</button>
-      <div class="slider">
-        <div id="slideContainer"></div>
+  <div class="grain"></div>
+
+  <!-- ░░ RÁDIO ░░ -->
+  <header class="radio" id="radio">
+    <div class="radio__bar">
+      <div class="radio__brand">
+        <span class="radio__eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span class="radio__name">RÁDIO&nbsp;·&nbsp;A&amp;P&nbsp;<span class="fm">98.7 FM</span></span>
       </div>
-      <button class="nav next" onclick="changeSlide(1)">&#10095;</button>
+
+      <div class="radio__now">
+        <span class="radio__tag">NO AR</span>
+        <span class="radio__track" id="radioTrack">Baby I'm Yours</span>
+        <span class="radio__dot">—</span>
+        <span class="radio__artist" id="radioArtist">Arctic Monkeys</span>
+      </div>
+
+      <div class="radio__controls">
+        <button id="btnPrev" class="radio__btn" aria-label="Anterior">&#9198;</button>
+        <button id="btnPlay" class="radio__btn radio__btn--play" aria-label="Tocar ou pausar">&#9654;</button>
+        <button id="btnNext" class="radio__btn" aria-label="Próxima">&#9197;</button>
+      </div>
     </div>
-    <div class="caption" id="caption"></div>
-  </div>
+    <div class="radio__embed" id="spotify-embed"></div>
+  </header>
 
-  <div class="section-box message">
-    <h2>Clique aqui para jogar</h2>
-    <button onclick="window.location.href='puzzle.html?img=pluzze.jpg'">QUEBRA-CABEÇA 1</button>
-    <button onclick="window.location.href='puzzle.html?img=pluzze2.jpg'">QUEBRA-CABEÇA 2</button>
-  </div>
+  <main>
+    <!-- ░░ HERO ░░ -->
+    <section class="hero">
+      <p class="hero__kicker">EST. 10 · 10 · 2020</p>
+      <h1 class="hero__title">PEDRO <span>&amp;</span> AMANDA</h1>
+      <div class="wave" id="wave" aria-hidden="true"></div>
+      <p class="hero__sub">Pedido de namoro — 10 de Outubro de 2020</p>
+    </section>
 
+    <!-- ░░ CONTADOR ░░ -->
+    <section class="clock">
+      <p class="clock__label">Juntos há</p>
+      <div id="daysTogether" class="clock__display">Carregando…</div>
+    </section>
+
+    <!-- ░░ GALERIA ░░ -->
+    <section class="gallery">
+      <h2 class="section-title">Memórias</h2>
+      <div class="slider-wrapper">
+        <button class="nav prev" onclick="changeSlide(-1)" aria-label="Anterior">&#10094;</button>
+        <div class="slider">
+          <div id="slideContainer"></div>
+        </div>
+        <button class="nav next" onclick="changeSlide(1)" aria-label="Próxima">&#10095;</button>
+      </div>
+      <div class="caption" id="caption"></div>
+    </section>
+
+    <!-- ░░ JOGOS ░░ -->
+    <section class="games">
+      <h2 class="section-title">Quebra-cabeça</h2>
+      <p class="games__hint">Monte uma das nossas fotos</p>
+      <div class="games__btns">
+        <button onclick="window.location.href='puzzle.html?img=pluzze.jpg'">JOGO 01</button>
+        <button onclick="window.location.href='puzzle.html?img=pluzze2.jpg'">JOGO 02</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span class="footer__wave" aria-hidden="true"></span>
+    PEDRO &amp; AMANDA — ♥ DESDE 2020
+  </footer>
+
+  <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
+  <script src="radio.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
