@@ -11,6 +11,7 @@
 </head>
 <body>
   <div class="grain"></div>
+  <div class="hearts" id="hearts" aria-hidden="true"></div>
 
   <!-- ░░ RÁDIO ░░ -->
   <header class="radio" id="radio">
@@ -33,14 +34,16 @@
         <button id="btnNext" class="radio__btn" aria-label="Próxima">&#9197;</button>
       </div>
     </div>
-    <div class="radio__embed" id="spotify-embed"></div>
+    <div class="radio__progress" id="progress" title="Avançar/retroceder">
+      <div class="radio__progress-fill" id="progressFill"></div>
+    </div>
   </header>
 
   <main>
     <!-- ░░ HERO ░░ -->
     <section class="hero">
       <p class="hero__kicker">EST. 10 · 10 · 2020</p>
-      <h1 class="hero__title">PEDRO <span>&amp;</span> AMANDA</h1>
+      <h1 class="hero__title">PEDRO <span>♥</span> AMANDA</h1>
       <div class="wave" id="wave" aria-hidden="true"></div>
       <p class="hero__sub">Pedido de namoro — 10 de Outubro de 2020</p>
     </section>
@@ -80,7 +83,6 @@
     PEDRO &amp; AMANDA — ♥ DESDE 2020
   </footer>
 
-  <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
   <script src="radio.js"></script>
   <script src="script.js"></script>
 </body>
