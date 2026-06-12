@@ -1,0 +1,300 @@
+/* Reset e layout geral */
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: #ffe4ec;
+  margin: 0;
+  padding: 20px 10px;
+  text-align: center;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Título e subtítulos */
+h1, h2 {
+  font-family: 'Great Vibes', cursive;
+  color: #c2185b;
+  margin: 5px 0;
+}
+
+/* Contador de dias */
+.counter {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+/* Linha do tempo */
+.timeline {
+  background-color: #fcd6e1;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  font-size: 0.9em;
+  max-width: 90%;
+}
+
+.timeline-item {
+  margin: 5px 0;
+}
+
+/* Galeria */
+.gallery {
+  background-color: #fcd6e1;
+  padding: 10px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  position: relative;
+  max-width: 90%;
+}
+
+/* Slider e botões laterais */
+.slider-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.slider {
+  width: 360px;
+  height: 480px;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #fcd6e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+/* Botões de navegação do slide */
+button.nav {
+  background-color: #c2185b;
+  color: white;
+  border: none;
+  padding: 14px 16px;
+  font-size: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  transition: background-color 0.3s ease;
+}
+
+button.nav:hover {
+  background-color: #e91e63;
+}
+
+/* Legenda das fotos */
+.caption {
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.4em;
+  margin-top: 8px;
+  color: #880e4f;
+  min-height: 30px;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Botão "JOGAR" */
+button {
+  background-color: #c2185b;
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.2em;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #e91e63;
+}
+
+/* Caixa do botão jogar */
+.message {
+  background-color: #fcd6e1;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 1em;
+  max-width: 90%;
+  line-height: 1.4;
+}
+
+/* Responsivo para telas pequenas */
+@media (max-height: 600px), (max-width: 400px) {
+  .slider {
+    width: 280px;
+    height: 360px;
+  }
+  .caption {
+    font-size: 1.2em;
+  }
+  button.nav {
+    padding: 12px;
+    font-size: 20px;
+  }
+/* Seção do quebra-cabeça */
+.puzzle {
+  background-color: #fcd6e1;
+  padding: 20px;
+  border-radius: 12px;
+  margin: 20px 0;
+  max-width: 90%;
+}
+
+.puzzle h2 {
+  font-family: 'Great Vibes', cursive;
+  color: #c2185b;
+  margin-bottom: 10px;
+}
+
+.puzzle-options p {
+  margin-bottom: 10px;
+  font-size: 1.1em;
+}
+
+.puzzle-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.level-btn {
+  background-color: #c2185b;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 1em;
+}
+
+.level-btn:hover {
+  background-color: #e91e63;
+}
+
+.custom-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.custom-input input {
+  padding: 5px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 60px;
+  text-align: center;
+}
+
+.puzzle-container {
+  display: grid;
+  margin: 0 auto;
+  max-width: 100%;
+  border: 2px solid #c2185b;
+  border-radius: 8px;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  position: relative;
+}
+
+/* Modal do resultado */
+.puzzle-modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #fff0f5;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.modal-content h3 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2em;
+  margin-bottom: 10px;
+  color: #c2185b;
+}
+
+.modal-content button {
+  margin-top: 10px;
+}
+.section-box {
+  background-color: #fcd6e1;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  width: 360px;
+  max-width: 90vw;
+  margin-left: auto;
+  margin-right: auto;
+}
+.message button {
+  width: 100%;
+  font-size: 1.4em;
+  padding: 14px 20px;
+  margin-top: 10px;
+  border-radius: 12px;
+  box-shadow: 0 6px 10px rgba(0,0,0,0.2);
+}
+.love-clock {
+  background-color: #fcd6e1;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+  margin: 20px 0;
+  display: inline-block;
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.love-clock h2 {
+  font-family: 'Great Vibes', cursive;
+  color: #c2185b;
+  font-size: 1.8em;
+  margin-bottom: 10px;
+}
+
+.clock-display {
+  font-size: 1.4em;
+  color: #880e4f;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+}
+
