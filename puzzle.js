@@ -20,7 +20,11 @@ let totalTiles = (cols * rows);
 let tiles = [];
 let selected = [];
 
+const LEVELS = ["facil", "medio", "dificil"];
+let currentLevel = "facil";
+
 function setDifficulty(level) {
+  currentLevel = level;
   if (level === "facil") cols = 3;
   else if (level === "medio") cols = 4;
   else cols = 6;
@@ -103,10 +107,31 @@ function checkWin() {
     tile.dataset.correct === tile.dataset.current
   );
   if (allCorrect) {
-    setTimeout(() => {
-      winOverlay.classList.add("show");     
-    }, 300);
+    setTimeout(showWin, 300);
   }
+}
+
+function showWin() {
+  const idx = LEVELS.indexOf(currentLevel);
+  const hasNext = idx >= 0 && idx < LEVELS.length - 1;
+  const winText = document.getElementById("winText");
+  const nextBtn = document.getElementById("nextLevelBtn");
+
+  if (hasNext) {
+    winText.textContent = "VC CONSEGUIU! 🎉 Bora pro próximo nível?";
+    nextBtn.style.display = "block";
+  } else {
+    winText.textContent = "VOCÊ ZEROU TUDO! 🏆❤️";
+    nextBtn.style.display = "none";
+  }
+  winOverlay.classList.add("show");
+}
+
+function nextLevel() {
+  const idx = LEVELS.indexOf(currentLevel);
+  const next = LEVELS[Math.min(idx + 1, LEVELS.length - 1)];
+  winOverlay.classList.remove("show");
+  setDifficulty(next);
 }
 
 function restartGame() {

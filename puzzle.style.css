@@ -177,11 +177,21 @@ h1 {
 .radio__bar {
   max-width: 1100px;
   margin: 0 auto;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 18px;
   padding: 12px 20px;
-  flex-wrap: wrap;
+}
+.radio__bar .radio__brand    { grid-column: 1; justify-self: start; }
+.radio__bar .radio__controls { grid-column: 2; justify-self: center; }
+.radio__bar .radio__now      { grid-column: 3; justify-self: end; }
+@media (max-width: 680px) {
+  .radio__bar { grid-template-columns: 1fr; gap: 10px; justify-items: center; }
+  .radio__bar .radio__brand,
+  .radio__bar .radio__controls,
+  .radio__bar .radio__now { grid-column: 1; justify-self: center; }
+  .radio__bar .radio__now { order: 3; }
 }
 .radio__brand {
   display: flex; align-items: center; gap: 10px;
