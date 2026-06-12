@@ -1,20 +1,66 @@
 const startDate = new Date("2020-10-10T00:00:00");
 
+function set(id, value) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = value;
+}
+
 function updateCounter() {
   const now = new Date();
-  const diffTime = now - startDate;
 
-  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-  const diffHours = Math.floor((diffTime / (1000 * 60 * 60)) % 24);
-  const diffMinutes = Math.floor((diffTime / (1000 * 60)) % 60);
-  const diffSeconds = Math.floor((diffTime / 1000) % 60);
+  let years   = now.getFullYear() - startDate.getFullYear();
+  let months  = now.getMonth()    - startDate.getMonth();
+  let days    = now.getDate()     - startDate.getDate();
+  let hours   = now.getHours()    - startDate.getHours();
+  let minutes = now.getMinutes()  - startDate.getMinutes();
+  let seconds = now.getSeconds()  - startDate.getSeconds();
 
-  document.getElementById("daysTogether").textContent =
-    `${diffDays} dias, ${String(diffHours).padStart(2, '0')}h ${String(diffMinutes).padStart(2, '0')}min ${String(diffSeconds).padStart(2, '0')}s`;
+  if (seconds < 0) { seconds += 60; minutes--; }
+  if (minutes < 0) { minutes += 60; hours--; }
+  if (hours   < 0) { hours   += 24; days--; }
+  if (days    < 0) {
+    // dias do mês anterior
+    const prevMonthDays = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+    days += prevMonthDays;
+    months--;
+  }
+  if (months  < 0) { months += 12; years--; }
+
+  set("cntAnos",  years);
+  set("cntMeses", months);
+  set("cntDias",  days);
+  set("cntHoras", String(hours).padStart(2, "0"));
+  set("cntMin",   String(minutes).padStart(2, "0"));
+  set("cntSeg",   String(seconds).padStart(2, "0"));
 }
 
 setInterval(updateCounter, 1000);
 updateCounter();
+
+// ░░ Botão "mandar um beijo" — explosão de corações (clichê on) ░░
+const kissBtn = document.getElementById("kissBtn");
+if (kissBtn) {
+  const EMOJIS = ["❤️", "😘", "💋", "💕", "💖", "🥰"];
+  kissBtn.addEventListener("click", () => {
+    const rect = kissBtn.getBoundingClientRect();
+    const originX = rect.left + rect.width / 2;
+    const originY = rect.top + rect.height / 2;
+    for (let i = 0; i < 18; i++) {
+      const k = document.createElement("span");
+      k.className = "kiss-burst";
+      k.textContent = EMOJIS[i % EMOJIS.length];
+      k.style.left = originX + "px";
+      k.style.top = originY + "px";
+      const angle = Math.random() * Math.PI * 2;
+      const dist = 60 + Math.random() * 140;
+      k.style.setProperty("--dx", Math.cos(angle) * dist + "px");
+      k.style.setProperty("--dy", (Math.sin(angle) * dist - 80) + "px");
+      k.style.fontSize = (16 + Math.random() * 18) + "px";
+      document.body.appendChild(k);
+      setTimeout(() => k.remove(), 1300);
+    }
+  });
+}
 
 const frases = [
   "“I wanna be yours” — e sou.",
