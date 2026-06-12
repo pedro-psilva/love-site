@@ -18,9 +18,10 @@ body {
   background: var(--bg);
   color: var(--ink);
   text-align: center;
-  padding: 20px;
+  padding: 0;
   min-height: 100vh;
 }
+.page { padding: 20px; }
 
 .grain::before {
   content: "";
@@ -168,7 +169,6 @@ h1 {
   position: sticky;
   top: 0;
   z-index: 100;
-  margin: -20px -20px 20px; /* fura o padding do body p/ largura total */
   background: rgba(11,11,12,.92);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
@@ -186,11 +186,6 @@ h1 {
 .radio__side { display: flex; align-items: center; gap: 10px; min-width: 0; }
 .radio__side--left  { justify-self: start; overflow: hidden; }
 .radio__side--right { justify-self: end; }
-@media (max-width: 620px) {
-  .radio__now { display: none; }
-  .radio__bar { gap: 8px; padding: 8px 12px; }
-  .radio__vol { width: 60px; }
-}
 .radio__brand {
   display: flex; align-items: center; gap: 10px;
   font-family: var(--display);
@@ -262,4 +257,11 @@ h1 {
   0%   { transform: translateY(0) rotate(0deg) scale(1); }
   100% { transform: translateY(-115vh) rotate(40deg) scale(1.15); }
 }
-.top-bar, h1, .subtitle, .difficulty, #content { position: relative; z-index: 2; }
+.page { position: relative; z-index: 2; }
+
+/* ░░ Rádio no mobile: tudo numa linha, esconde a faixa ░░ */
+@media (max-width: 620px) {
+  .radio__now { display: none; }
+  .radio__bar { gap: 8px; padding: 8px 12px; }
+  .radio__vol { width: 60px; }
+}
