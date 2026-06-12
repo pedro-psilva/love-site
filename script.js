@@ -7,31 +7,31 @@ function set(id, value) {
 
 function updateCounter() {
   const now = new Date();
+  const ms = now - startDate;
+  const fmt = (n) => n.toLocaleString("pt-BR");
 
-  let years   = now.getFullYear() - startDate.getFullYear();
-  let months  = now.getMonth()    - startDate.getMonth();
-  let days    = now.getDate()     - startDate.getDate();
-  let hours   = now.getHours()    - startDate.getHours();
-  let minutes = now.getMinutes()  - startDate.getMinutes();
-  let seconds = now.getSeconds()  - startDate.getSeconds();
+  // anos + meses pelo calendário (a linha dos anos mostra "e X meses")
+  let totalMonths =
+    (now.getFullYear() - startDate.getFullYear()) * 12 +
+    (now.getMonth() - startDate.getMonth());
+  if (now.getDate() < startDate.getDate()) totalMonths--;
+  const years = Math.floor(totalMonths / 12);
+  const remMonths = ((totalMonths % 12) + 12) % 12;
 
-  if (seconds < 0) { seconds += 60; minutes--; }
-  if (minutes < 0) { minutes += 60; hours--; }
-  if (hours   < 0) { hours   += 24; days--; }
-  if (days    < 0) {
-    // dias do mês anterior
-    const prevMonthDays = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
-    days += prevMonthDays;
-    months--;
-  }
-  if (months  < 0) { months += 12; years--; }
+  // totais corridos em cada unidade
+  const totalDays    = Math.floor(ms / 86400000);
+  const totalHours   = Math.floor(ms / 3600000);
+  const totalMinutes = Math.floor(ms / 60000);
+  const totalSeconds = Math.floor(ms / 1000);
 
-  set("cntAnos",  years);
-  set("cntMeses", months);
-  set("cntDias",  days);
-  set("cntHoras", String(hours).padStart(2, "0"));
-  set("cntMin",   String(minutes).padStart(2, "0"));
-  set("cntSeg",   String(seconds).padStart(2, "0"));
+  set("totAnos", years);
+  set("totAnosLbl",
+    remMonths === 0 ? "anos" : `anos e ${remMonths} ${remMonths === 1 ? "mês" : "meses"}`);
+  set("totMeses", fmt(totalMonths));
+  set("totDias",  fmt(totalDays));
+  set("totHoras", fmt(totalHours));
+  set("totMin",   fmt(totalMinutes));
+  set("totSeg",   fmt(totalSeconds));
 }
 
 setInterval(updateCounter, 1000);
